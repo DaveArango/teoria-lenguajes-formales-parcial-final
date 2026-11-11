@@ -1,0 +1,75 @@
+Gramatica G = (V, Σ, R, S)
+  V = { Bot, Intencion, Preguntas, Pregunta, Opciones, Opcion, Accion }
+  Σ = { intencion, id, {, }, pregunta, cadena, opcion, :, responder, ir_a }
+  S = Bot
+  R =
+    (1) Bot → Intencion Bot
+    (2) Bot → Intencion
+    (3) Intencion → intencion id { Preguntas }
+    (4) Preguntas → Pregunta Preguntas
+    (5) Preguntas → Pregunta
+    (6) Pregunta → pregunta cadena { Opciones }
+    (7) Opciones → Opcion Opciones
+    (8) Opciones → Opcion
+    (9) Opcion → opcion cadena : Accion
+    (10) Accion → responder cadena
+    (11) Accion → ir_a id
+    (12) Accion → Pregunta
+
+Derivacion suministrada (tipo: izquierda)
+   0. Bot
+   1. Intencion
+        [regla 2: Bot → Intencion]
+   2. intencion id { Preguntas }
+        [regla 3: Intencion → intencion id { Preguntas }]
+   3. intencion id { Pregunta }
+        [regla 5: Preguntas → Pregunta]
+   4. intencion id { pregunta cadena { Opciones } }
+        [regla 6: Pregunta → pregunta cadena { Opciones }]
+   5. intencion id { pregunta cadena { Opcion Opciones } }
+        [regla 7: Opciones → Opcion Opciones]
+   6. intencion id { pregunta cadena { opcion cadena : Accion Opciones } }
+        [regla 9: Opcion → opcion cadena : Accion]
+   7. intencion id { pregunta cadena { opcion cadena : responder cadena Opciones } }
+        [regla 10: Accion → responder cadena]
+   8. intencion id { pregunta cadena { opcion cadena : responder cadena Opcion } }
+        [regla 8: Opciones → Opcion]
+   9. intencion id { pregunta cadena { opcion cadena : responder cadena opcion cadena : Accion } }
+        [regla 9: Opcion → opcion cadena : Accion]
+  10. intencion id { pregunta cadena { opcion cadena : responder cadena opcion cadena : ir_a id } }
+        [regla 11: Accion → ir_a id]
+
+Arbol de derivacion
+Bot
+└── Intencion
+    ├── intencion
+    ├── id
+    ├── {
+    ├── Preguntas
+    │   └── Pregunta
+    │       ├── pregunta
+    │       ├── cadena
+    │       ├── {
+    │       ├── Opciones
+    │       │   ├── Opcion
+    │       │   │   ├── opcion
+    │       │   │   ├── cadena
+    │       │   │   ├── :
+    │       │   │   └── Accion
+    │       │   │       ├── responder
+    │       │   │       └── cadena
+    │       │   └── Opciones
+    │       │       └── Opcion
+    │       │           ├── opcion
+    │       │           ├── cadena
+    │       │           ├── :
+    │       │           └── Accion
+    │       │               ├── ir_a
+    │       │               └── id
+    │       └── }
+    └── }
+
+Cadena derivada (hojas de izquierda a derecha):
+  intencion id { pregunta cadena { opcion cadena : responder cadena opcion cadena : ir_a id } }
+Pasos aplicados: 10
+Imagen del arbol guardada en: salidas/w1_izquierda.png

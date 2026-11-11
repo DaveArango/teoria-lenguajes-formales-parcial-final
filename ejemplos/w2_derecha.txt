@@ -1,0 +1,17 @@
+# w2: la segunda opcion abre una pregunta anidada (derivacion por la derecha)
+tipo: derecha
+Bot
+Intencion
+intencion id { Preguntas }
+intencion id { Pregunta }
+intencion id { pregunta cadena { Opciones } }
+intencion id { pregunta cadena { Opcion Opciones } }
+intencion id { pregunta cadena { Opcion Opcion } }
+intencion id { pregunta cadena { Opcion opcion cadena : Accion } }
+intencion id { pregunta cadena { Opcion opcion cadena : Pregunta } }
+intencion id { pregunta cadena { Opcion opcion cadena : pregunta cadena { Opciones } } }
+intencion id { pregunta cadena { Opcion opcion cadena : pregunta cadena { Opcion } } }
+intencion id { pregunta cadena { Opcion opcion cadena : pregunta cadena { opcion cadena : Accion } } }
+intencion id { pregunta cadena { Opcion opcion cadena : pregunta cadena { opcion cadena : responder cadena } } }
+intencion id { pregunta cadena { opcion cadena : Accion opcion cadena : pregunta cadena { opcion cadena : responder cadena } } }
+intencion id { pregunta cadena { opcion cadena : ir_a id opcion cadena : pregunta cadena { opcion cadena : responder cadena } } }

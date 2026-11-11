@@ -1,0 +1,9 @@
+# w3: intento de derivar una pregunta sin opciones. El programa rechaza el
+# ultimo paso porque ninguna produccion permite borrar Opciones.
+tipo: izquierda
+Bot
+Intencion
+intencion id { Preguntas }
+intencion id { Pregunta }
+intencion id { pregunta cadena { Opciones } }
+intencion id { pregunta cadena { } }

@@ -1,0 +1,14 @@
+# Arbol A: la ultima opcion pertenece a la pregunta INTERNA
+tipo: izquierda
+Pregunta
+pregunta cadena Opciones
+pregunta cadena Opcion
+pregunta cadena opcion cadena : Accion
+pregunta cadena opcion cadena : Pregunta
+pregunta cadena opcion cadena : pregunta cadena Opciones
+pregunta cadena opcion cadena : pregunta cadena Opcion Opciones
+pregunta cadena opcion cadena : pregunta cadena opcion cadena : Accion Opciones
+pregunta cadena opcion cadena : pregunta cadena opcion cadena : responder cadena Opciones
+pregunta cadena opcion cadena : pregunta cadena opcion cadena : responder cadena Opcion
+pregunta cadena opcion cadena : pregunta cadena opcion cadena : responder cadena opcion cadena : Accion
+pregunta cadena opcion cadena : pregunta cadena opcion cadena : responder cadena opcion cadena : ir_a id

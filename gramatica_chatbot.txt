@@ -1,0 +1,12 @@
+# Gramatica G del DSL de cuestionarios para chatbots (tematica 29)
+# Formato:  Cabeza ::= simbolo simbolo ... | otra alternativa
+# Los simbolos se separan con espacios. Todo simbolo que aparece a la
+# izquierda de ::= es no terminal; los demas son terminales.
+inicial: Bot
+Bot        ::= Intencion Bot | Intencion
+Intencion  ::= intencion id { Preguntas }
+Preguntas  ::= Pregunta Preguntas | Pregunta
+Pregunta   ::= pregunta cadena { Opciones }
+Opciones   ::= Opcion Opciones | Opcion
+Opcion     ::= opcion cadena : Accion
+Accion     ::= responder cadena | ir_a id | Pregunta

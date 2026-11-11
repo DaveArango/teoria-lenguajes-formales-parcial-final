@@ -1,0 +1,7 @@
+# Gramatica G' (version SIN llaves en Pregunta) usada en la seccion IV
+# para mostrar la ambiguedad de la "opcion colgante".
+inicial: Pregunta
+Pregunta   ::= pregunta cadena Opciones
+Opciones   ::= Opcion Opciones | Opcion
+Opcion     ::= opcion cadena : Accion
+Accion     ::= responder cadena | ir_a id | Pregunta

@@ -1,0 +1,55 @@
+GENERADOR DE ARBOLES DE DERIVACION
+Teoria de Lenguajes Formales - Segundo parcial
+Tematica 29: DSL de cuestionarios para chatbots
+Autores: Jhonatan David Vivas Arango y Valery Andrea Ortiz Mesa
+
+1. REQUISITOS
+   - Python 3.8 o superior (solo biblioteca estandar; no hay que instalar paquetes).
+   - Opcional: Graphviz (https://graphviz.org/download/) para exportar el arbol
+     como imagen PNG con --png. El arbol en texto no lo necesita.
+
+2. ARCHIVOS
+   arbol_derivacion.py            programa
+   gramatica_chatbot.txt          reglas de la gramatica G del informe
+   gramatica_ambigua.txt          gramatica G' de la seccion IV (sin llaves)
+   ejemplos/w1_izquierda.txt      pasos de w1 (derivacion por la izquierda)
+   ejemplos/w2_derecha.txt        pasos de w2 (derivacion por la derecha)
+   ejemplos/w3_invalida.txt       intento con la cadena invalida w3 (da error)
+   ejemplos/ambigua_arbol_A.txt   primer arbol de la cadena ambigua
+   ejemplos/ambigua_arbol_B.txt   segundo arbol de la misma cadena
+
+3. EJECUCION (desde esta carpeta; en Windows use "python" o "py")
+   Cadena w1:
+       python arbol_derivacion.py gramatica_chatbot.txt ejemplos/w1_izquierda.txt
+   Cadena w2:
+       python arbol_derivacion.py gramatica_chatbot.txt ejemplos/w2_derecha.txt
+   Con imagen del arbol (requiere Graphviz):
+       python arbol_derivacion.py gramatica_chatbot.txt ejemplos/w1_izquierda.txt --png w1.png
+   Solo el archivo DOT (se puede pegar en https://dreampuf.github.io/GraphvizOnline):
+       python arbol_derivacion.py gramatica_chatbot.txt ejemplos/w2_derecha.txt --dot w2.dot
+   Cadena invalida (el programa informa el paso que no se puede dar):
+       python arbol_derivacion.py gramatica_chatbot.txt ejemplos/w3_invalida.txt
+   Ambiguedad de la seccion IV:
+       python arbol_derivacion.py gramatica_ambigua.txt ejemplos/ambigua_arbol_A.txt
+       python arbol_derivacion.py gramatica_ambigua.txt ejemplos/ambigua_arbol_B.txt
+   Modo interactivo (escribir reglas y pasos por teclado):
+       python arbol_derivacion.py
+
+4. FORMATO DE LA ENTRADA (no hay que tocar el codigo para probar otro ejemplo)
+   Archivo de gramatica:
+       inicial: S                 (opcional; por defecto, la cabeza de la primera regla)
+       A ::= x B y | z            (alternativas con |; simbolos separados por espacios)
+       B ::= ε                    (cadena vacia: ε, epsilon o lambda)
+     Es no terminal todo simbolo que aparece a la izquierda de ::=.
+     Las lineas que empiezan con # son comentarios.
+   Archivo de derivacion:
+       tipo: izquierda            (izquierda, derecha o libre; por defecto libre)
+       S                          (primer paso: el simbolo inicial)
+       x B y                      (una forma sentencial por linea)
+       x y
+
+5. QUE HACE Y QUE NO HACE
+   El programa no es un parser: no recibe una cadena para averiguar como se
+   deriva. Recibe los pasos ya escritos, comprueba que cada uno salga del
+   anterior con una produccion de la gramatica (y que respete el tipo de
+   derivacion declarado) y va colgando los hijos en el arbol.

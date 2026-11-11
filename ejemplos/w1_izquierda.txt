@@ -1,0 +1,13 @@
+# w1: una intencion, una pregunta y dos opciones (derivacion por la izquierda)
+tipo: izquierda
+Bot
+Intencion
+intencion id { Preguntas }
+intencion id { Pregunta }
+intencion id { pregunta cadena { Opciones } }
+intencion id { pregunta cadena { Opcion Opciones } }
+intencion id { pregunta cadena { opcion cadena : Accion Opciones } }
+intencion id { pregunta cadena { opcion cadena : responder cadena Opciones } }
+intencion id { pregunta cadena { opcion cadena : responder cadena Opcion } }
+intencion id { pregunta cadena { opcion cadena : responder cadena opcion cadena : Accion } }
+intencion id { pregunta cadena { opcion cadena : responder cadena opcion cadena : ir_a id } }
